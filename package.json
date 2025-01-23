@@ -1,0 +1,23 @@
+{
+  "name": "nexpense",
+  "version": "1.0.0",
+  "description": "FREE Small Business Expense Tracker",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron main.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nexus-stone-solutions/Nexpense.git"
+  },
+  "author": "Tanner Smith <tanner.s@nexusstone.cloud>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nexus-stone-solutions/Nexpense/issues"
+  },
+  "homepage": "https://github.com/nexus-stone-solutions/Nexpense#readme",
+  "devDependencies": {
+    "electron": "^34.0.1"
+  }
+}
