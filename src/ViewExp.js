@@ -29,13 +29,26 @@ export default function ShowExp() {
       {error && <p className="error-text">{error}</p>}
       <h1>Expenses</h1>
       {expenses.length > 0 ? (
-        <ul>
-          {expenses.map((expense) => (
-            <li key={expense.id}>
-              <strong>{expense.item_name}</strong>: {expense.item_amount}
-            </li>
-          ))}
-        </ul>
+        <>
+        <table style={{ whiteSpace: "nowrap" }} id="expenses-table">
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>Price</th>
+                        <th>Occurrence</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {expenses.map((expense) => (
+                  <tr key={expense.id}>
+                      <td>{expense.item_name}</td>
+                      <td>{expense.item_amount}</td>
+                      <td>One-Time Purchase</td>
+                  </tr>
+                ))}
+                </tbody>
+            </table>
+        </>
       ) : (
         <><p>Let's get some expenses in here!</p><br/><Link to="/add-exp"><p className="link">Add an expense</p></Link></>
       )}
