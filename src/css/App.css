@@ -75,12 +75,15 @@ a {
 #header-container li {
   padding: 10px 0;
   width: 200px;
-  border-bottom: 1px solid #ff6a0044;
 }
 
 #header-container li:hover {
   cursor: pointer;
   color: #fdad73;
+  background-color: #ff6a0077;
+}
+
+.nav-active {
   background-color: #ff6a0044;
 }
 
@@ -105,4 +108,149 @@ a {
   font-weight: 700;
   width: 50%;
   margin: 10px auto;
+}
+
+/* Add expense */
+.expense-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.expense-form input {
+  padding: 10px;
+  margin-bottom: 20px;
+  width: 30%;
+  border: none;
+  border-radius: 3px;
+  text-align: center;
+  background-color: #e3e3e3;
+  font-family: "Quicksand", serif;
+  font-weight: 700;
+}
+
+.expense-form input[type="tel"] {
+  width: 15%;
+}
+
+.expense-form label {
+  padding: 5px;
+  margin: 10px 0;
+}
+
+.expense-form textarea {
+  padding: 10px;
+  margin: 5px 0;
+  height: 150px;
+  width: 500px;
+  border: none;
+  border-radius: 3px;
+  overflow-y: scroll;
+  resize: none;
+  background-color: #e3e3e3;
+  font-family: "Quicksand", serif;
+  font-weight: 700;
+}
+
+.expense-form button {
+  margin: 40px auto;
+  background-color: #4c4c4c;
+  color: #fdad73;
+  font-weight: 700;
+  border: 1px solid #fdad7377;
+  border-radius: 3px;
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.expense-form button:hover {
+  cursor: pointer;
+  background-color: #5c5c5c;
+}
+
+#expense-add-img {
+  height: 20px;
+  width: 20px;
+  margin-left: 5px;
+}
+
+.radio-container {
+  width: 50%;
+  padding: 0px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.expense-form .radio-div {
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+  margin: 5px auto;
+}
+
+.expense-form input[type=radio] {
+  appearance: none;
+  border-radius: 10%;
+  width: 10px;
+  height: 10px;
+  border: 2px solid #fdad73;
+  transition: 0.1s all linear;
+  margin-right: 10px;
+  margin-bottom: 0;
+  bottom: 2px;
+  position: relative;
+}
+
+.expense-form input[type=radio]:checked {
+  background-color: #fdad7377;
+}
+
+/* Expense Table */
+#expenses-container {
+  overflow-x: auto;
+  overflow-y: auto;
+  width: 95%;
+  margin: auto;
+}
+
+table {
+  font-size: .8rem;
+  padding: 10px 0;
+  margin: auto;
+}
+
+table, th, td {
+  padding: 10px;
+  border: 1px solid #fdad73;
+  text-align: center;
+  border-collapse: collapse;
+}
+
+table th {
+  width: auto;
+  background-color: #fdad7377;
+}
+
+#expenses-table span {
+  color: #fdad73;
+}
+
+#change-size {
+  font-size: 1.3rem;
+  font-weight: 700;
+  position: absolute;
+  float: left;
+  top: 35px;
+  left: 45px;
+}
+
+#grow-font:hover {
+  cursor: pointer;
+}
+
+#shrink-font:hover {
+  cursor: pointer;
 }

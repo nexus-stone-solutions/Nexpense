@@ -30,24 +30,38 @@ export default function ShowExp() {
       <h1>Expenses</h1>
       {expenses.length > 0 ? (
         <>
-        <table style={{ whiteSpace: "nowrap" }} id="expenses-table">
-                <thead>
-                    <tr>
-                        <th>Item</th>
-                        <th>Price</th>
-                        <th>Occurrence</th>
-                    </tr>
-                </thead>
-                <tbody>
-                {expenses.map((expense) => (
-                  <tr key={expense.id}>
-                      <td>{expense.item_name}</td>
-                      <td>{expense.item_amount}</td>
-                      <td>One-Time Purchase</td>
-                  </tr>
-                ))}
-                </tbody>
-            </table>
+        <div id="expenses-container">
+        <table style={{ whiteSpace: "nowrap"}} id="expenses-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Purchase Date</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th># Purchased</th>
+                    <th>Total</th>
+                    <th>Frequency</th>
+                    <th>Date Added</th>
+                </tr>
+            </thead>
+            <tbody>
+            {expenses.map((expense) => (
+              <tr key={expense.id}>
+                  <td>{expense.id}</td>
+                  <td>{expense.purchase_date}</td>
+                  <td>{expense.item_name}</td>
+                  <td>{expense.item_description}</td>
+                  <td><span>$</span>{expense.item_price}</td>
+                  <td>{expense.num_purchased}</td>
+                  <td>{expense.total}</td>
+                  <td>{expense.frequency}</td>
+                  <td>{expense.date_created}Z</td>
+              </tr>
+            ))}
+            </tbody>
+          </table>
+          </div>
         </>
       ) : (
         <><p>Let's get some expenses in here!</p><br/><Link to="/add-exp"><p className="link">Add an expense</p></Link></>
