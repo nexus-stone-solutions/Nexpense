@@ -62,7 +62,7 @@ export const addExpense = (expenseData) => {
           num_purchased, 
           total,
           frequency
-      ) VALUES (?, ?, ?, ?, ?, ?)
+      ) VALUES (?, ?, ?, ?, ?, ?, ?)
     `;
 
     database.run(

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-export default function ShowExp() {
+export default function ViewExp() {
   const [expenses, setExpenses] = useState(null);
   const [error, setError] = useState("");
 
@@ -39,7 +39,7 @@ export default function ShowExp() {
                     <th>Name</th>
                     <th>Description</th>
                     <th>Price</th>
-                    <th># Purchased</th>
+                    <th>#</th>
                     <th>Total</th>
                     <th>Frequency</th>
                     <th>Date Added</th>
@@ -54,7 +54,7 @@ export default function ShowExp() {
                   <td>{expense.item_description}</td>
                   <td><span>$</span>{expense.item_price}</td>
                   <td>{expense.num_purchased}</td>
-                  <td>{expense.total}</td>
+                  <td><span>$</span>{expense.total}</td>
                   <td>{expense.frequency}</td>
                   <td>{expense.date_created}Z</td>
               </tr>

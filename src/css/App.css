@@ -238,19 +238,35 @@ table th {
   color: #fdad73;
 }
 
-#change-size {
-  font-size: 1.3rem;
+tr:nth-child(even) {
+  background-color: #fdad7344;
+}
+
+/* Dashboard */
+.dashboard-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-bottom: 50px;
+  margin-top: 20px;
+}
+
+.metric-item {
+  width: 20%;
+  height: 150px;
+  padding: 20px;
+  list-style: none;
+  border: 1px solid #fdad73;
+  color: #fdad73;
+  background-color: #272727;
+}
+
+.metric-title {
+  color: white;
   font-weight: 700;
-  position: absolute;
-  float: left;
-  top: 35px;
-  left: 45px;
 }
 
-#grow-font:hover {
-  cursor: pointer;
-}
-
-#shrink-font:hover {
-  cursor: pointer;
+.metric-info {
+  margin-top: 25px;
+  font-size: 1.3rem;
 }
