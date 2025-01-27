@@ -30,6 +30,18 @@ export default function ViewExp() {
       <h1>Expenses</h1>
       {expenses.length > 0 ? (
         <>
+        <div id="export-menu">
+        <span>Export</span>
+          <div id="export-drop">
+            <ul id="export-list">
+              <li>Current Month</li>
+              <li>Last Month</li>
+              <li>Current Year</li>
+              <li>Last Year</li>
+              <li>All Time</li>
+            </ul>
+          </div>
+        </div>
         <div id="expenses-container">
         <table style={{ whiteSpace: "nowrap"}} id="expenses-table">
             <thead>
@@ -52,9 +64,9 @@ export default function ViewExp() {
                   <td>{expense.purchase_date}</td>
                   <td>{expense.item_name}</td>
                   <td>{expense.item_description}</td>
-                  <td><span>$</span>{expense.item_price}</td>
+                  <td><span>$ </span>{expense.item_price}</td>
                   <td>{expense.num_purchased}</td>
-                  <td><span>$</span>{expense.total}</td>
+                  <td><span>$ </span>{expense.total}</td>
                   <td>{expense.frequency}</td>
                   <td>{expense.date_created}Z</td>
               </tr>
