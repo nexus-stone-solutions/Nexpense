@@ -30,6 +30,7 @@ export default function ViewExp() {
       <h1>Expenses</h1>
       {expenses.length > 0 ? (
         <>
+        <div id="export-container">
         <div id="export-menu">
         <span>Export</span>
           <div id="export-drop">
@@ -41,6 +42,7 @@ export default function ViewExp() {
               <li>All Time</li>
             </ul>
           </div>
+        </div>
         </div>
         <div id="expenses-container">
         <table style={{ whiteSpace: "nowrap"}} id="expenses-table">

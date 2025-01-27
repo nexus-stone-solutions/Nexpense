@@ -242,6 +242,12 @@ tr:nth-child(even) {
   background-color: #fdad7344;
 }
 
+#export-container {
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+}
+
 #export-menu {
   position: relative;
   display: inline-block;
