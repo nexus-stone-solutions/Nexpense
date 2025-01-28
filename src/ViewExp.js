@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import download from "./logos/download.png";
 
 export default function ViewExp() {
   const [expenses, setExpenses] = useState(null);
@@ -20,6 +21,22 @@ export default function ViewExp() {
     fetchExpenses();
   }, []);
 
+  const exportCurrentMonth = async () => {
+    await window.api.export("currentMonth");
+  }
+  const exportLastMonth = async () => {
+    await window.api.export("lastMonth");
+  }
+  const exportCurrentYear = async () => {
+    await window.api.export("currentYear");
+  }
+  const exportLastYear = async () => {
+    await window.api.export("lastYear");
+  }
+  const exportAllTime = async () => {
+    await window.api.export("allTime");
+  }
+
   if (expenses === null) {
     return <div id="container"><p>Loading...</p></div>
   }
@@ -32,14 +49,16 @@ export default function ViewExp() {
         <>
         <div id="export-container">
         <div id="export-menu">
-        <span>Export</span>
+        <div id="export-title-container">
+        <span>Export</span><img src={download} alt=""/>
+        </div>
           <div id="export-drop">
             <ul id="export-list">
-              <li>Current Month</li>
-              <li>Last Month</li>
-              <li>Current Year</li>
-              <li>Last Year</li>
-              <li>All Time</li>
+              <li onClick={exportCurrentMonth}>Current Month</li>
+              <li onClick={exportLastMonth}>Last Month</li>
+              <li onClick={exportCurrentYear}>Current Year</li>
+              <li onClick={exportLastYear}>Last Year</li>
+              <li onClick={exportAllTime}>All Time</li>
             </ul>
           </div>
         </div>

@@ -4,6 +4,7 @@ import isDev from 'electron-is-dev';
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { getExpenses, removeExpense, addExpense } from './database.js';
+import { exportCurrentMonth, exportLastMonth, exportCurrentYear, exportLastYear, exportAllTime } from "./export.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -48,7 +49,7 @@ ipcMain.handle('remove-expense', async (_, item_id) => {
     return await removeExpense(item_id);
   } catch (err) {
     console.error('Error removing expense:', err.message);
-    return 'error';
+    return err.message || "error";
   }
 });
 
@@ -57,7 +58,28 @@ ipcMain.handle('add-expense', async (_, expenseData) => {
     return await addExpense(expenseData);
   } catch (err) {
     console.error('Error adding expense:', err.message);
-    return 'error';
+    return err.message || "error";
+  }
+});
+
+ipcMain.handle('export', async (_, exportType) => {
+  try {
+    if (exportType === "currentMonth") {
+      return await exportCurrentMonth();
+    } else if (exportType === "lastMonth") {
+      return await exportLastMonth();
+    } else if (exportType === "currentYear") {
+      return await exportCurrentYear();
+    } else if (exportType === "lastYear") {
+      return await exportLastYear();
+    } else if (exportType === "allTime") {
+      return await exportAllTime();
+    } else {
+      throw new Error("Invalid export type provided.")
+    }
+  } catch (err) {
+    console.error('Error exporting expenses:', err.message);
+    return err.message || "error";
   }
 });
 

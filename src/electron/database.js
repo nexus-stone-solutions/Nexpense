@@ -1,6 +1,6 @@
 import sqlite3 from 'sqlite3';
 
-const database = new sqlite3.Database("db.sqlite");
+const database = new sqlite3.Database("db/db.sqlite");
 
 // Ensure the table exists
 database.run(`

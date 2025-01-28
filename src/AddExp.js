@@ -37,6 +37,7 @@ export default function AddExp() {
       <div className="home-content">
             <form onSubmit={handleSubmit} className="expense-form">
                 <label>Purchase Date</label>
+              <div id="date-container">
                 <input
                 id="purchaseDate"
                 type="date"
@@ -44,6 +45,8 @@ export default function AddExp() {
                 onChange={(e) => setPurchaseDate(e.target.value)}
                 required
                 />
+                <span class="validity"></span>
+              </div>
                 <label>Item Name</label>
                 <input
                 id="itemName"
