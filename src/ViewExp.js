@@ -15,7 +15,7 @@ export default function ViewExp() {
       } catch (err) {
         setExpenses([])
         setError(err.message || "An unknown error occurred.");
-        setTimeout(() => setError(""), 5000); // Clear error after 5 seconds
+        setTimeout(() => setError(""), 5000);
       }
     };
 
@@ -24,17 +24,25 @@ export default function ViewExp() {
 
   const exportExpenses = async () => {
     try {
-      console.log("exporting...")
-      const exportFile = await window.api.exportExpenses();
-      console.log(exportFile);
+      const data = []
+      const headers = Object.keys(expenses[0]);
+      data.push(headers.join(','));
+      for (let e of expenses) {
+        data.push(Object.values(e).join(','))
+      }
+      const csvData = data.join('\n')
+      const blob = new Blob([csvData], { type: 'text/csv' });
+      const url = URL.createObjectURL(blob);
       const link = document.createElement("a");
-      link.href = exportFile;
+      link.href = url;
       link.download = `expenses_${new Date().toLocaleDateString('en-US', { hour12: false, hour: "numeric", minute: "numeric", second: "numeric"}).replace(", ","_")}.csv`;
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
+
     } catch (err) {
       setError(err.message || "An error occurred.")
+      setTimeout(() => setError(""), 5000);
     }
   }
 

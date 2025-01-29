@@ -3,7 +3,7 @@ import path from 'path';
 import isDev from 'electron-is-dev';
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
-import { getExpenses, removeExpense, addExpense, exportExpenses } from './database.js';
+import { getExpenses, removeExpense, addExpense } from './database.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -57,15 +57,6 @@ ipcMain.handle('add-expense', async (_, expenseData) => {
     return await addExpense(expenseData);
   } catch (err) {
     console.error('Error adding expense:', err.message);
-    return err.message || "error";
-  }
-});
-
-ipcMain.handle('export', async () => {
-  try {
-      return await exportExpenses();
-  } catch (err) {
-    console.error('Error exporting expenses:', err.message);
     return err.message || "error";
   }
 });

@@ -85,8 +85,3 @@ export const addExpense = (expenseData) => {
     );
   });
 };
-
-export const exportExpenses = async () => {
-  const rows = await getExpenses();
-  console.log(rows)
-}
