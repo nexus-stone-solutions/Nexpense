@@ -45,7 +45,7 @@ export default function AddExp() {
                 onChange={(e) => setPurchaseDate(e.target.value)}
                 required
                 />
-                <span class="validity"></span>
+                <span className="validity"></span>
               </div>
                 <label>Item Name</label>
                 <input

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import download from "./logos/download.png";
+import ex from "./logos/ex.png";
 
 export default function ViewExp() {
   const [expenses, setExpenses] = useState(null);
@@ -21,20 +22,30 @@ export default function ViewExp() {
     fetchExpenses();
   }, []);
 
-  const exportCurrentMonth = async () => {
-    await window.api.export("currentMonth");
+  const exportExpenses = async () => {
+    try {
+      console.log("exporting...")
+      const exportFile = await window.api.exportExpenses();
+      console.log(exportFile);
+      const link = document.createElement("a");
+      link.href = exportFile;
+      link.download = `expenses_${new Date().toLocaleDateString('en-US', { hour12: false, hour: "numeric", minute: "numeric", second: "numeric"}).replace(", ","_")}.csv`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } catch (err) {
+      setError(err.message || "An error occurred.")
+    }
   }
-  const exportLastMonth = async () => {
-    await window.api.export("lastMonth");
-  }
-  const exportCurrentYear = async () => {
-    await window.api.export("currentYear");
-  }
-  const exportLastYear = async () => {
-    await window.api.export("lastYear");
-  }
-  const exportAllTime = async () => {
-    await window.api.export("allTime");
+
+  const deleteExpense = async (id) => {
+    try {
+      await window.api.removeExpense(id);
+      window.location.reload();
+    } catch (err) {
+      setError(err.message || "An unknown error occurred.");
+      setTimeout(() => setError(""), 5000); // Clear error after 5 seconds
+    }
   }
 
   if (expenses === null) {
@@ -47,27 +58,13 @@ export default function ViewExp() {
       <h1>Expenses</h1>
       {expenses.length > 0 ? (
         <>
-        <div id="export-container">
-        <div id="export-menu">
         <div id="export-title-container">
-        <span>Export</span><img src={download} alt=""/>
-        </div>
-          <div id="export-drop">
-            <ul id="export-list">
-              <li onClick={exportCurrentMonth}>Current Month</li>
-              <li onClick={exportLastMonth}>Last Month</li>
-              <li onClick={exportCurrentYear}>Current Year</li>
-              <li onClick={exportLastYear}>Last Year</li>
-              <li onClick={exportAllTime}>All Time</li>
-            </ul>
-          </div>
-        </div>
+        <span onClick={() => exportExpenses()}>Export</span><img src={download} alt=""/>
         </div>
         <div id="expenses-container">
         <table style={{ whiteSpace: "nowrap"}} id="expenses-table">
             <thead>
                 <tr>
-                    <th>ID</th>
                     <th>Purchase Date</th>
                     <th>Name</th>
                     <th>Description</th>
@@ -75,13 +72,12 @@ export default function ViewExp() {
                     <th>#</th>
                     <th>Total</th>
                     <th>Frequency</th>
-                    <th>Date Added</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
             {expenses.map((expense) => (
               <tr key={expense.id}>
-                  <td>{expense.id}</td>
                   <td>{expense.purchase_date}</td>
                   <td>{expense.item_name}</td>
                   <td>{expense.item_description}</td>
@@ -89,7 +85,7 @@ export default function ViewExp() {
                   <td>{expense.num_purchased}</td>
                   <td><span>$ </span>{expense.total}</td>
                   <td>{expense.frequency}</td>
-                  <td>{expense.date_created}Z</td>
+                  <td onClick={() => deleteExpense(expense.id)}><img className="del-expense-img" src={ex} alt=" X "></img></td>
               </tr>
             ))}
             </tbody>

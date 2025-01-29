@@ -17,12 +17,17 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  scrollbar-width: none;
 }
 
 html, body {
   height: 100%;
   margin: 0;
   font-family: "Quicksand", serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+html::-webkit-scrollbar {
+  display: none;
 }
 
 /* Main layout */
@@ -239,20 +244,26 @@ a {
   margin: auto;
 }
 
-table {
-  font-size: .9rem;
+#expenses-table {
   padding: 10px 0;
   margin: auto;
+  width: 100%;
+  max-width: 100%;
 }
 
-table, th, td {
+#expenses-table, #expenses-table th, #expenses-table td {
   padding: 10px;
   border: 1px solid #fdad73;
   text-align: center;
   border-collapse: collapse;
 }
 
-table th {
+#expenses-table th, #expenses-table td {
+  max-width: 300px;
+  overflow: scroll;
+}
+
+#expenses-table th {
   width: auto;
   background-color: #fdad7377;
 }
@@ -265,69 +276,40 @@ tr:nth-child(even) {
   background-color: #fdad7344;
 }
 
-#export-container {
-  width: 70%;
-  margin: auto;
-  text-align: right;
-}
-
-#export-menu {
-  position: relative;
-  display: inline-block;
-  text-align: left;
-  margin-bottom: 10px;
-}
-
 #export-title-container {
+  width: 95%;
+  margin: auto;
+  margin-bottom: 10px;
   display: flex;
-  flex: row;
+  flex-direction: row;
   align-items: center;
+  justify-content: start;
 }
 
-#export-menu span {
+#export-title-container span {
   font-weight: 700;
   font-size: .9rem;
 }
 
-#export-menu span:hover {
+#export-title-container span:hover {
   color: #fdad73;
+  cursor: pointer;
 }
 
-#export-menu img {
+#export-title-container img {
   height: 20px;
   width: 20px;
 }
 
-#export-menu:hover {
+.del-expense-img {
+  height: 20px;
+  width: 20px;
+}
+
+.del-expense-img:hover {
   cursor: pointer;
-}
-
-#export-drop {
-  display: none;
-  position: absolute;
-  background-color: #2c2c2c;
-  border: 1px solid #fdad73;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.4);
-  padding: 12px 16px;
-  z-index: 1;
-}
-
-#export-menu:hover #export-drop {
-  display: block;
-  cursor: pointer;
-}
-
-#export-list {
-  list-style: none;
-}
-
-#export-list li {
-  padding: 5px 0;
-}
-
-#export-list li:hover {
-  color: #fdad73;
+  border: 1px solid #f5f5f5;
+  border-radius: 5px;
 }
 
 /* Dashboard */

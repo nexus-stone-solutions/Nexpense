@@ -2,9 +2,9 @@ const { contextBridge, ipcRenderer } = require('electron');
 
 contextBridge.exposeInMainWorld('api', {
   getExpenses: async () => await ipcRenderer.invoke('get-expenses'),
-  removeExpense: async (item_id) => await ipcRenderer.invoke('remove-expense', item_id),
+  removeExpense: async (id) => await ipcRenderer.invoke('remove-expense', id),
   addExpense: async (expenseData) => await ipcRenderer.invoke('add-expense', expenseData),
-  export: async (exportType) => await ipcRenderer.invoke('export', exportType),
+  exportExpenses: async () => await ipcRenderer.invoke('export'),
 });
 
 console.log('Preload script loaded');

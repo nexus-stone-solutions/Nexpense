@@ -20,7 +20,7 @@ database.run(`
 // Fetch all expenses
 export const getExpenses = () => {
   return new Promise((resolve, reject) => {
-    database.all('SELECT * FROM expenses ORDER BY id DESC', (err, rows) => {
+    database.all('SELECT * FROM expenses ORDER BY purchase_date DESC', (err, rows) => {
       if (err) {
         reject(err);
       } else {
@@ -31,9 +31,9 @@ export const getExpenses = () => {
 };
 
 // Remove an expense
-export const removeExpense = (item_id) => {
+export const removeExpense = (id) => {
   return new Promise((resolve, reject) => {
-    database.run(`DELETE FROM expenses WHERE id=?`, [item_id], function (err) {
+    database.run(`DELETE FROM expenses WHERE id=?`, [id], function (err) {
       if (err) {
         reject(err);
       } else {
@@ -45,7 +45,6 @@ export const removeExpense = (item_id) => {
 
 // Add an expense item
 export const addExpense = (expenseData) => {
-    console.log("[+] Adding new expense...");
     let frequency;
     if (expenseData.freq === "other") {
         frequency = expenseData.freqOther;
@@ -86,3 +85,8 @@ export const addExpense = (expenseData) => {
     );
   });
 };
+
+export const exportExpenses = async () => {
+  const rows = await getExpenses();
+  console.log(rows)
+}
