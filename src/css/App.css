@@ -95,7 +95,19 @@ a {
   background-color: #ff6a0044;
 }
 
-/* Home */
+/* General */
+#container {
+  width: 100%;
+  text-align: center;
+  position: relative;
+  padding: 20px;
+}
+
+#container h1 {
+  padding-bottom: 25px;
+}
+
+/* Home Page */
 #home-container {
   width: 100%;
   text-align: center;
@@ -440,7 +452,9 @@ a {
 }
 
 .metric-total {
-  font-size: 1.5rem;
+  max-width: 100%;
+  overflow: scroll;
+  font-size: 1.4rem;
   background-color: #fdad7377;
   border-radius: 3px;
   color: white;
