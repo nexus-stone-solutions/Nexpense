@@ -1,5 +1,5 @@
 # Nexpense
-FREE Small Business Expense Tracker
+FREE Expense Tracker
 
 # Usage
 ### Option 1: Download the application from the Nexus Stone website here:
