@@ -89,9 +89,9 @@ export default function ViewExp() {
                   <td>{expense.purchase_date}</td>
                   <td>{expense.item_name}</td>
                   <td>{expense.item_description}</td>
-                  <td><span>$ </span>{expense.item_price}</td>
+                  <td><span>$</span>{expense.item_price.toLocaleString()}</td>
                   <td>{expense.num_purchased}</td>
-                  <td><span>$ </span>{expense.total}</td>
+                  <td><span>$</span>{expense.total.toLocaleString()}</td>
                   <td>{expense.frequency}</td>
                   <td onClick={() => deleteExpense(expense.id)}><img className="del-expense-img" src={ex} alt=" X "></img></td>
               </tr>

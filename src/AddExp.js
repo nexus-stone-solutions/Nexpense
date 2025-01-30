@@ -30,6 +30,7 @@ export default function AddExp() {
     }
     const output = `${todayDate[2]}-${postMonth}-${todayDate[1]}`;
     setToday(output);
+    setPurchaseDate(output);
   },[])
 
   const handleSubmit = async (e) => {
@@ -62,7 +63,7 @@ export default function AddExp() {
                 <input
                 id="purchaseDate"
                 type="date"
-                value={purchaseDate?purchaseDate:today}
+                value={(purchaseDate&&purchaseDate!==today)?purchaseDate:today}
                 onChange={(e) => setPurchaseDate(e.target.value)}
                 required
                 />

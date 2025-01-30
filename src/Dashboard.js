@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip} from 'chart.js';
 import { Line } from 'react-chartjs-2';
-import { monthData, monthOptions, yearData, yearOptions, allTimeData, allTimeOptions } from "./Charts.js";
 
 ChartJS.register(
   CategoryScale,
@@ -18,11 +17,28 @@ export default function Dashboard() {
   const [metrics, setMetrics] = useState(null);
   const [error, setError] = useState("");
 
+  // Chart Data
+  const [mData, setMData] = useState("");
+  const [yData, setYData] = useState("");
+  const [aData, setAData] = useState("");
+  
+  // Set options for Charts
+  const monthOptions = {responsive: true,maintainAspectRatio: false, scales: {
+    x: {title: {display: true,text: "Day of Month",color: "#ffffffcc",},ticks: {color: "#ffffffcc"},grid: {color: "#333333"},},
+    y: {title: {display: true,text: "Spending",color: "#ffffffcc",},ticks: {color: "#ffffffcc"},grid: {color: "#555555"},},}}
+  const yearOptions = {responsive: true, maintainAspectRatio: false, scales: {
+    x: {title: {display: true,text: "Month",color: "#ffffffcc",},ticks: {color: "#ffffffcc"},grid: {color: "#333333"},},
+    y: {title: {display: true,text: "Spending",color: "#ffffffcc",},ticks: {color: "#ffffffcc"},grid: {color: "#555555"},},}}
+  const allTimeOptions = {responsive: true, maintainAspectRatio: false, scales: {
+    x: {title: {display: true,text: "Year",color: "#ffffffcc",},ticks: {color: "#ffffffcc"},grid: {color: "#333333"},},
+    y: {title: {display: true,text: "Spending",color: "#ffffffcc",},ticks: {color: "#ffffffcc"},grid: {color: "#555555"},},}}
+
+  // Calculate metrics for dashboard tiles
   useEffect(() => {
     let isMounted = true;
   
     const getMetrics = async (expenses) => {
-      if (!isMounted) return;  // Prevents setting state on unmounted component
+      if (!isMounted) return;
       
       const months = {0: "Jan", 1: "Feb", 2: "Mar", 3: "Apr", 4: "May", 5: "Jun", 6: "Jul", 7: "Aug", 8: "Sep", 9: "Oct", 10: "Nov", 11: "Dec"};
       let monthlyTotals = {};
@@ -36,6 +52,11 @@ export default function Dashboard() {
 
       let allTimeTotal = 0;
       let allTimeExpenses = [];
+
+      let thisMonthDays = {};
+      let thisYearMonths = {};
+      let allTimeYears = {};
+
   
       const date = new Date();
       const m = date.getMonth() + 1;
@@ -55,6 +76,7 @@ export default function Dashboard() {
         if (pMonth === m) {
           thisMonthTotal += e.total;
           thisMonthExpenses.push(e);
+          thisMonthDays[pDate.getDate()] = (thisMonthDays[pDate.getDate()] || 0) + e.total;
         }
         if (pMonth === (m-1) || (pMonth === 12 && m === 1)) {
           lastMonthTotal += e.total;
@@ -62,10 +84,12 @@ export default function Dashboard() {
         if (pYear === y) {
           thisYearTotal += e.total;
           thisYearExpenses.push(e);
+          thisYearMonths[monthReadable] = (thisYearMonths[monthReadable] || 0) + e.total;
         }
 
         allTimeTotal += e.total;
         allTimeExpenses.push(e);
+        allTimeYears[pYear] = (allTimeYears[pYear] || 0) + e.total;
   
         monthlyTotals[monthReadable] = (monthlyTotals[monthReadable] || 0) + e.total;
         yearlyTotals[pYear] = (yearlyTotals[pYear] || 0) + e.total;
@@ -77,6 +101,9 @@ export default function Dashboard() {
   
       if (isMounted) {
         setMetrics({ thisYearTotal, thisYearExpenses, yearlyTotals, monthlyTotals, thisMonthTotal, thisMonthExpenses, lastMonthTotal, allTimeTotal, allTimeExpenses });
+        setMData(thisMonthDays);
+        setYData(thisYearMonths);
+        setAData(allTimeYears);
       }
     };
   
@@ -98,10 +125,39 @@ export default function Dashboard() {
   
     return () => { isMounted = false };  // Cleanup function
   }, []);
-  
 
+  // Month Line Chart
+  const monthData = {
+    labels: Object.keys(mData),
+    datasets: [{
+        label: '$',
+        data: Object.values(mData),
+        borderColor: '#fdad7377',
+        backgroundColor: '#fdad7377',
+        }],
+  };
+  // Year Line Chart
+  const yearData = {
+      labels: Object.keys(yData),
+      datasets: [{
+			label: '$',
+			data: Object.values(mData),
+			borderColor: '#fdad7377',
+			backgroundColor: '#fdad7377',
+			}],
+  };
+  // All Time Line Chart
+  const allTimeData = {
+      labels: Object.keys(aData),
+      datasets: [{
+			label: '$',
+			data: Object.values(aData),
+			borderColor: '#fdad7377',
+			backgroundColor: '#fdad7377',
+			}],
+  };
 
-  if (expenses === null) {
+  if (expenses === null || mData === "" || yData === "" || aData === "") {
     return <div id="container"><p>Loading...</p></div>
   }
 
@@ -116,14 +172,14 @@ export default function Dashboard() {
         <ul className="metric-item metric-small">
           <li className="metric-title">This Month</li>
           <div className="metric-info-container">
-          <li className="metric-info">${metrics.thisMonthTotal}</li>
+          <li className="metric-info metric-total">${metrics.thisMonthTotal.toLocaleString()}</li>
           </div>
         </ul>
         <ul className="metric-item metric-large">
           <li className="metric-title">Last Month vs This Month</li>
           <div className="metric-info-container">
-            <li className="metric-info"><span style={{color: "white"}}>Last Month: </span>${metrics.lastMonthTotal.toFixed(2)}</li>
-            <li className="metric-info"><span style={{color: "white"}}>This Month: </span>${metrics.thisMonthTotal.toFixed(2)}</li>
+            <li className="metric-info"><span style={{color: "white"}}>Last Month: </span>${metrics.lastMonthTotal.toLocaleString()}</li>
+            <li className="metric-info"><span style={{color: "white"}}>This Month: </span>${metrics.thisMonthTotal.toLocaleString()}</li>
           </div>
         </ul>
         <ul className="metric-item metric-large">
@@ -134,7 +190,7 @@ export default function Dashboard() {
           {metrics.thisMonthExpenses.slice(0,5).map((e) => (
             <tr key={e.id}>
             <td className="metric-info"><span style={{color: "white"}}>{e.item_name}</span></td>
-            <td className="metric-info">${e.total.toFixed(2)}</td>
+            <td className="metric-info">${e.total.toLocaleString()}</td>
             </tr>
           ))}
           </tbody>
@@ -157,7 +213,7 @@ export default function Dashboard() {
         <ul className="metric-item metric-small">
           <li className="metric-title">This Year</li>
           <div className="metric-info-container">
-          <li className="metric-info">${metrics.thisYearTotal}</li>
+          <li className="metric-info metric-total">${metrics.thisYearTotal.toLocaleString()}</li>
           </div>
         </ul>
         <ul className="metric-item metric-large">
@@ -168,7 +224,7 @@ export default function Dashboard() {
           {Object.entries(metrics.monthlyTotals).slice(0,13).map(([month, total]) => (
             <tr key={month}>
             <td className="metric-info"><span style={{color: "white"}}>{month}</span></td>
-            <td className="metric-info">${total.toFixed(2)}</td>
+            <td className="metric-info">${total.toLocaleString()}</td>
             </tr>
           ))}
           </tbody>
@@ -183,7 +239,7 @@ export default function Dashboard() {
           {metrics.thisYearExpenses.slice(0,10).map((e) => (
             <tr key={e.id}>
             <td className="metric-info"><span style={{color: "white"}}>{e.item_name}</span></td>
-            <td className="metric-info">${e.total.toFixed(2)}</td>
+            <td className="metric-info">${e.total.toLocaleString()}</td>
             </tr>
           ))}
             </tbody>
@@ -206,7 +262,7 @@ export default function Dashboard() {
         <ul className="metric-item metric-small">
           <li className="metric-title">All Time</li>
           <div className="metric-info-container">
-          <li className="metric-info">${metrics.allTimeTotal}</li>
+          <li className="metric-info metric-total">${metrics.allTimeTotal.toLocaleString()}</li>
           </div>
         </ul>
         <ul className="metric-item metric-large">
@@ -217,7 +273,7 @@ export default function Dashboard() {
           {Object.entries(metrics.yearlyTotals).reverse().map(([year, total]) => (
             <tr key={year}>
             <td className="metric-info"><span style={{color: "white"}}>{year}</span></td>
-            <td className="metric-info">${total.toFixed(2)}</td>
+            <td className="metric-info">${total.toLocaleString()}</td>
             </tr>
           ))}
           </tbody>
@@ -232,7 +288,7 @@ export default function Dashboard() {
           {metrics.allTimeExpenses.slice(0,10).map((e) => (
             <tr key={e.id}>
             <td className="metric-info"><span style={{color: "white"}}>{e.item_name}</span></td>
-            <td className="metric-info">${e.total.toFixed(2)}</td>
+            <td className="metric-info">${e.total.toLocaleString()}</td>
             </tr>
           ))}
           </tbody>
