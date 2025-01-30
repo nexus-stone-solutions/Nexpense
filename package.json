@@ -25,7 +25,7 @@
     "url": "git+https://github.com/nexus-stone-solutions/Nexpense.git"
   },
   "author": "Tanner Smith <tanner.s@nexusstone.cloud>",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/nexus-stone-solutions/Nexpense/issues"
   },
@@ -35,7 +35,6 @@
     "electron-is-dev": "^3.0.1"
   },
   "dependencies": {
-    "animejs": "^3.2.2",
     "chart.js": "^4.4.7",
     "cra-template": "1.2.0",
     "dotenv": "^16.4.7",
