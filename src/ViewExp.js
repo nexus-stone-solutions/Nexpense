@@ -35,7 +35,7 @@ export default function ViewExp() {
       const url = URL.createObjectURL(blob);
       const link = document.createElement("a");
       link.href = url;
-      link.download = `expenses_${new Date().toLocaleDateString('en-US', { hour12: false, hour: "numeric", minute: "numeric", second: "numeric"}).replace(", ","_")}.csv`;
+      link.download = `expenses_${new Date().toLocaleDateString('en-US', { hour12: false, hour: "numeric", minute: "numeric", second: "numeric"}).replace(", ","-")}.csv`;
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);

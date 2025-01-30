@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import add from "./logos/add.png";
+import info from "./logos/info.png";
 
 export default function AddExp() {
   const [error, setError] = useState("");
@@ -7,9 +8,29 @@ export default function AddExp() {
   const [itemName, setItemName] = useState("");
   const [itemDesc, setItemDesc] = useState("");
   const [price, setPrice] = useState("");
-  const [numPurchased, setNumPurchased] = useState("");
-  const [freq, setFreq] = useState("");
+  const [numPurchased, setNumPurchased] = useState(1);
+  const [freq, setFreq] = useState("One Time");
   const [freqOther, setFreqOther] = useState("");
+  const [today, setToday] = useState("");
+
+  useEffect(() => {
+    const todayDate = new Date().toLocaleDateString('en-US').split("/")
+    let month;
+    const preMonth = new Date().getMonth()+1;
+    if (preMonth === 12) {
+      month = 0
+    } else {
+      month = preMonth;
+    }
+    let postMonth;
+    if (month<10) {
+      postMonth=`0${month}`
+    } else {
+      postMonth=month
+    }
+    const output = `${todayDate[2]}-${postMonth}-${todayDate[1]}`;
+    setToday(output);
+  },[])
 
   const handleSubmit = async (e) => {
     try {
@@ -41,7 +62,7 @@ export default function AddExp() {
                 <input
                 id="purchaseDate"
                 type="date"
-                value={purchaseDate}
+                value={purchaseDate?purchaseDate:today}
                 onChange={(e) => setPurchaseDate(e.target.value)}
                 required
                 />
@@ -61,9 +82,11 @@ export default function AddExp() {
                 type="text"
                 value={itemDesc}
                 onChange={(e) => setItemDesc(e.target.value)}
-                required
                 />
-                <label>Price</label>
+                <div id="price-container">
+                <label htmlFor="price">Price</label><img alt="info" src={info}/>
+                <span>Exclude commas and currency symbols. Only use numbers and, optionally, a period '.'</span>
+                </div>
                 <input
                 id="price"
                 type="tel"
@@ -77,7 +100,7 @@ export default function AddExp() {
                 <input
                 id="numPurchased"
                 type="tel"
-                value={numPurchased}
+                value={(numPurchased&&numPurchased!==1)?numPurchased:1}
                 onChange={(e) => setNumPurchased(e.target.value)}
                 required
                 min={0}
@@ -94,6 +117,7 @@ export default function AddExp() {
                 name="freq"
                 value="One Time"
                 onChange={() => setFreq("One Time")}
+                checked={(freq&&freq!=="One Time")?false:true}
                 />
                 <p htmlFor="oneTime">One-Time Purchase</p>
                 </div>
