@@ -14,5 +14,5 @@ https://nexusstone.cloud/nexpense
    - npm start
    - npm run electron
 
-#### Discussions
-https://github.com/nexus-stone-solutions/Nexpense/discussions/1#discussion-7894651
+### Discussions: 
+[Discussion Board](https://github.com/nexus-stone-solutions/Nexpense/discussions/1)
