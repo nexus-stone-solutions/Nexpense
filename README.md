@@ -13,3 +13,6 @@ https://nexusstone.cloud/nexpense
 5. Run the following command-line commands in the unzipped folder:
    - npm start
    - npm run electron
+
+#### Discussions
+https://github.com/nexus-stone-solutions/Nexpense/discussions/1#discussion-7894651
