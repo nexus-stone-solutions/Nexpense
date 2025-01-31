@@ -1,9 +1,11 @@
 # Nexpense
 FREE Expense Tracker
 
+*Nexpense is under active development. As such, new features will be released regularly, so be sure to download the newest version periodically.*
+
 # Usage
 ### Option 1: Download the application from the Nexus Stone website here:
-https://nexusstone.cloud/nexpense
+[Nexus Stone Solutions - Nexpense](https://nexusstone.cloud/nexpense.html)
 
 ### Option 2: Build from the GitHub repo:
 1. Click the green '< > Code' button above
@@ -16,3 +18,11 @@ https://nexusstone.cloud/nexpense
 
 ### Discussions: 
 [Discussion Board](https://github.com/nexus-stone-solutions/Nexpense/discussions/1)
+
+### Gallery
+![Nexpense Dashboard](https://nexusstone.cloud/img/nexpense-dash.png)
+#
+![Nexpense Expense Table](https://nexusstone.cloud/img/nexpense-table.png)
+#
+![Nexpense Expense Add Form](https://nexusstone.cloud/img/nexpense-add.png)
+#
