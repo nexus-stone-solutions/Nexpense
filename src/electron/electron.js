@@ -17,6 +17,7 @@ function createWindow() {
   mainWindow = new BrowserWindow({
     width: 1000,
     height: 800,
+    icon: path.join(__dirname, "logo", "logo.png"),
     webPreferences: {
       contextIsolation: true,
       preload: preloadPath,
@@ -25,9 +26,8 @@ function createWindow() {
 
   const startURL = isDev
     ? 'http://localhost:3000'
-    : `file://${path.resolve(__dirname, '../../build/index.html')}`;
+    : `file://${path.resolve(app.getAppPath(), 'build/index.html')}`;
 
-  // mainWindow.loadURL(startURL);
   mainWindow.loadURL(startURL);
 
   mainWindow.on('closed', () => (mainWindow = null));

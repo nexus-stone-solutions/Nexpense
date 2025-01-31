@@ -1,4 +1,10 @@
 import sqlite3 from 'sqlite3';
+import fs from "fs";
+
+const uploadFolder = "db/";
+if (!fs.existsSync(uploadFolder)) {
+	fs.mkdirSync(uploadFolder);
+}
 
 const database = new sqlite3.Database("db/db.sqlite");
 

@@ -1,7 +1,7 @@
 {
   "name": "nexpense",
   "version": "1.0.0",
-  "description": "FREE Small Business Expense Tracker",
+  "description": "FREE Expense Tracker",
   "private": true,
   "type": "module",
   "main": "electron.js",
@@ -10,6 +10,15 @@
     "productName": "Nexpense",
     "directories": {
       "output": "dist"
+    },
+    "mac": {
+      "icon": "build/icon.icns"
+    },
+    "win": {
+      "icon": "build/icon.ico"
+    },
+    "linux": {
+      "icon": "build/icon.png"
     }
   },
   "scripts": {
@@ -32,6 +41,7 @@
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "electron": "^34.0.1",
+    "electron-builder": "^25.1.8",
     "electron-is-dev": "^3.0.1"
   },
   "dependencies": {
