@@ -77,7 +77,7 @@ export default function ViewExp() {
                     <th>Name</th>
                     <th>Description</th>
                     <th>Price</th>
-                    <th>#</th>
+                    <th>Quantity</th>
                     <th>Total</th>
                     <th>Frequency</th>
                     <th></th>

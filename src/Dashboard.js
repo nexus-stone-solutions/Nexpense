@@ -73,12 +73,12 @@ export default function Dashboard() {
         }
         const pYear = pDate.getFullYear();
 
-        if (pMonth === m) {
+        if (pMonth === m && pYear === y) {
           thisMonthTotal += e.total;
           thisMonthExpenses.push(e);
           thisMonthDays[pDate.getDate()] = (thisMonthDays[pDate.getDate()] || 0) + e.total;
         }
-        if (pMonth === (m-1) || (pMonth === 12 && m === 1)) {
+        if ((pMonth === (m-1) && (pYear === y)) || ((pMonth === 12 && m === 1) && (pYear === (y-1)))) {
           lastMonthTotal += e.total;
         }
         if (pYear === y) {
@@ -257,7 +257,7 @@ export default function Dashboard() {
         </ul>
         </div>
 
-        <div className="dashboard-divider">All Time</div>
+        <div className="dashboard-divider">All Time Expenses</div>
         <div className="dashboard-container">
         <ul className="metric-item metric-small">
           <li className="metric-title">All Time</li>

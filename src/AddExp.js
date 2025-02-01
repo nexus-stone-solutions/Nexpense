@@ -101,7 +101,7 @@ export default function AddExp() {
                 <input
                 id="numPurchased"
                 type="tel"
-                value={(numPurchased&&numPurchased!==1)?numPurchased:1}
+                value={(numPurchased&&numPurchased!=="")?numPurchased:""}
                 onChange={(e) => setNumPurchased(e.target.value)}
                 required
                 min={0}

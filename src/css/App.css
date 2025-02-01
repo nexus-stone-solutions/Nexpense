@@ -291,6 +291,11 @@ a {
   position: relative;
 }
 
+.expense-form input[type=radio]:hover {
+  cursor: pointer;
+  background-color: #fdad7377;
+}
+
 .expense-form input[type=radio]:checked {
   background-color: #fdad73;
 }
@@ -440,10 +445,11 @@ a {
 }
 
 .dash-table, tr, td {
-  padding: 10px;
   border-bottom: 1px solid rgb(253, 173, 115);
   text-align: center;
   border-collapse: collapse;
+  max-width: 80%;
+  overflow: scroll;
 }
 
 .metric-graph {

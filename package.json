@@ -11,6 +11,7 @@
     "directories": {
       "output": "dist"
     },
+    "files": ["build/*"],
     "mac": {
       "icon": "build/icon.icns"
     },
