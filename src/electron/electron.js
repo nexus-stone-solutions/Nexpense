@@ -76,4 +76,8 @@ app.on('activate', () => {
       console.error(`Failed to load: ${errorDescription} (${errorCode})`);
     });
   }
+  // On macOS it's common to re-create a window in the app when the dock icon is clicked and there are no other windows open.
+  else if (BrowserWindow.getAllWindows().length === 0) {
+    createWindow();
+  }
 });

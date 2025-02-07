@@ -9,17 +9,23 @@
     "appId": "com.nss.nexpense",
     "productName": "Nexpense",
     "directories": {
+      "buildResources": "logo",
       "output": "dist"
     },
-    "files": ["build/*"],
+    "files": [
+      "build/**/*",
+      "electron.js",
+      "node_modules/**/*",
+      "package.json"
+    ],
     "mac": {
-      "icon": "build/icon.icns"
+      "icon": "logo/icon.icns"
     },
     "win": {
-      "icon": "build/icon.ico"
+      "icon": "logo/icon.ico"
     },
     "linux": {
-      "icon": "build/icon.png"
+      "icon": "logo/icon.png"
     }
   },
   "scripts": {

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import add from "./logos/add.png";
-import info from "./logos/info.png";
+import add from "./icons/add.png";
+import info from "./icons/info.png";
 
 export default function AddExp() {
   const [error, setError] = useState("");

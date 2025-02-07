@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import download from "./logos/download.png";
-import ex from "./logos/ex.png";
+import download from "./icons/download.png";
+import ex from "./icons/ex.png";
 
 export default function ViewExp() {
   const [expenses, setExpenses] = useState(null);
