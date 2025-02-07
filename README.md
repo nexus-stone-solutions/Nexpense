@@ -20,7 +20,7 @@ FREE Expense Tracker
 [Discussion Board](https://github.com/nexus-stone-solutions/Nexpense/discussions/1)
 
 ### Gallery
-![Nexpense Dashboard](https://nexusstone.cloud/img/nexpense-dash.png)
+![Leave a comment!](https://nexusstone.cloud/img/nexpense-dash.png)
 #
 ![Nexpense Expense Table](https://nexusstone.cloud/img/nexpense-table.png)
 #
