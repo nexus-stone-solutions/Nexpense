@@ -4,35 +4,35 @@
   "description": "FREE Expense Tracker",
   "private": true,
   "type": "module",
-  "main": "electron.js",
+  "main": "src/electron/electron.js",
   "build": {
     "appId": "com.nss.nexpense",
     "productName": "Nexpense",
     "directories": {
-      "buildResources": "logo",
+      "buildResources": "logos",
       "output": "dist"
     },
     "files": [
       "build/**/*",
-      "electron.js",
+      "src/electron/**/*",
       "node_modules/**/*",
       "package.json"
     ],
     "mac": {
-      "icon": "logo/icon.icns"
+      "icon": "logos/icon.icns"
     },
     "win": {
-      "icon": "logo/icon.ico"
+      "icon": "logos/icon.ico"
     },
     "linux": {
-      "icon": "logo/icon.png"
+      "icon": "logos/icon.png"
     }
   },
   "scripts": {
-    "electron": "electron ./src/electron/electron.js",
-    "dist": "electron-builder",
+    "electron-dev": "electron ./src/electron/electron.js",
     "start": "BROWSER=none react-scripts start",
     "build": "react-scripts build",
+    "dist": "npm run build && electron-builder",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
