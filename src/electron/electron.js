@@ -11,13 +11,13 @@ let mainWindow;
 
 function createWindow() {
   const preloadPath = isDev
-  ? path.resolve(__dirname, 'preload.js')
-  : path.reslove(app.getAppPath(), 'build/preload.js');
+    ? path.resolve(__dirname, 'preload.js')
+    : path.resolve(__dirname, 'build/preload.js');
 
   mainWindow = new BrowserWindow({
     width: 1000,
     height: 800,
-    icon: path.join(__dirname, "logo", "logo.png"),
+    icon: path.join(__dirname, "logos", "logo.png"),
     webPreferences: {
       contextIsolation: true,
       preload: preloadPath,
@@ -26,7 +26,7 @@ function createWindow() {
 
   const startURL = isDev
     ? 'http://localhost:3000'
-    : `file://${path.resolve(app.getAppPath(), 'build/index.html')}`;
+    : `file://${path.join(__dirname, 'index.html')}`;
 
   mainWindow.loadURL(startURL);
 
@@ -80,4 +80,11 @@ app.on('activate', () => {
   else if (BrowserWindow.getAllWindows().length === 0) {
     createWindow();
   }
+});
+
+// Add error logging for failed loads
+app.on('web-contents-created', (_, contents) => {
+  contents.on('did-fail-load', (event, errorCode, errorDescription) => {
+    console.error(`Failed to load: ${errorDescription} (${errorCode})`);
+  });
 });

@@ -1,12 +1,25 @@
 import sqlite3 from 'sqlite3';
 import fs from "fs";
+import path from "path";
+import { app } from "electron";
 
-const uploadFolder = "db/";
-if (!fs.existsSync(uploadFolder)) {
-	fs.mkdirSync(uploadFolder);
+const userDataPath = app.getPath("userData"); // Get writable directory
+const dbFolderPath = path.join(userDataPath, "db"); 
+const dbFilePath = path.join(dbFolderPath, "db.sqlite");
+
+// Ensure the database folder exists
+if (!fs.existsSync(dbFolderPath)) {
+	fs.mkdirSync(dbFolderPath, { recursive: true });
 }
 
-const database = new sqlite3.Database("db/db.sqlite");
+// Initialize database connection
+const database = new sqlite3.Database(dbFilePath, (err) => {
+	if (err) {
+		console.error("Error opening database:", err.message);
+	} else {
+		console.log("Connected to SQLite database:", dbFilePath);
+	}
+});
 
 // Ensure the table exists
 database.run(`
