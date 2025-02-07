@@ -31,7 +31,10 @@
       "icon": "./logos/logo.ico",
       "target": [
         "nsis",
-        "portable"
+        "zip"
+      ],
+      "arch": [
+        "x64"
       ]
     },
     "linux": {
