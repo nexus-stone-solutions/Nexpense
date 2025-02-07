@@ -1,9 +1,10 @@
 import { app, BrowserWindow, ipcMain } from 'electron';
 import path from 'path';
-import isDev from 'electron-is-dev';
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { getExpenses, removeExpense, addExpense } from './database.js';
+
+const isDev = false;
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -12,7 +13,7 @@ let mainWindow;
 function createWindow() {
   const preloadPath = isDev
     ? path.resolve(__dirname, 'preload.js')
-    : path.resolve(__dirname, 'build/preload.js');
+    : path.resolve(__dirname, 'preload.js');
 
   mainWindow = new BrowserWindow({
     width: 1000,

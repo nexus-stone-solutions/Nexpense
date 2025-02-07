@@ -3,7 +3,7 @@ import fs from "fs";
 import path from "path";
 import { app } from "electron";
 
-const userDataPath = app.getPath("userData"); // Get writable directory
+const userDataPath = app.getPath("userData");
 const dbFolderPath = path.join(userDataPath, "db"); 
 const dbFilePath = path.join(dbFolderPath, "db.sqlite");
 

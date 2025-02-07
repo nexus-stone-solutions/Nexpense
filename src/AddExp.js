@@ -16,6 +16,7 @@ export default function AddExp() {
   useEffect(() => {
     const todayDate = new Date().toLocaleDateString('en-US').split("/")
     let month;
+    let day = todayDate[1];
     const preMonth = new Date().getMonth()+1;
     if (preMonth === 12) {
       month = 0
@@ -28,7 +29,13 @@ export default function AddExp() {
     } else {
       postMonth=month
     }
-    const output = `${todayDate[2]}-${postMonth}-${todayDate[1]}`;
+    let postDay;
+    if (day<10) {
+      postDay=`0${day}`
+    } else {
+      postDay=day
+    }
+    const output = `${todayDate[2]}-${postMonth}-${postDay}`;
     setToday(output);
     setPurchaseDate(output);
   },[])

@@ -5,6 +5,7 @@
   "private": true,
   "type": "module",
   "main": "build/electron.js",
+  "homepage": ".",
   "build": {
     "appId": "com.nss.nexpense",
     "productName": "Nexpense",
@@ -21,15 +22,24 @@
     ],
     "mac": {
       "icon": "./logos/logo.icns",
-      "target": ["dmg", "zip"]
+      "target": [
+        "dmg",
+        "zip"
+      ]
     },
     "win": {
       "icon": "./logos/logo.ico",
-      "target": ["nsis", "portable"]
+      "target": [
+        "nsis",
+        "portable"
+      ]
     },
     "linux": {
       "icon": "./logos/logo.png",
-      "target": ["AppImage", "deb"]
+      "target": [
+        "AppImage",
+        "deb"
+      ]
     }
   },
   "scripts": {
@@ -52,8 +62,7 @@
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "electron": "^34.0.1",
-    "electron-builder": "^25.1.8",
-    "electron-is-dev": "^3.0.1"
+    "electron-builder": "^25.1.8"
   },
   "dependencies": {
     "chart.js": "^4.4.7",
