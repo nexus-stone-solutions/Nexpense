@@ -17,10 +17,10 @@ FREE Expense Tracker
    - npm run electron
 
 ### Discussions: 
-[Discussion Board](https://github.com/nexus-stone-solutions/Nexpense/discussions/1)
+[Leave a comment!](https://github.com/nexus-stone-solutions/Nexpense/discussions/1)
 
 ### Gallery
-![Leave a comment!](https://nexusstone.cloud/img/nexpense-dash.png)
+![Nexpense Dashboard](https://nexusstone.cloud/img/nexpense-dash.png)
 #
 ![Nexpense Expense Table](https://nexusstone.cloud/img/nexpense-table.png)
 #
