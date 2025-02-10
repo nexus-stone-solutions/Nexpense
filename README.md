@@ -13,8 +13,8 @@ FREE Expense Tracker
 3. Unzip the file on your computer
 4. Double-click
 5. Run the following command-line commands in the unzipped folder:
-   - npm start
-   - npm run electron
+   - `npm start`
+   - `npm run electron`
 
 ### Discussions: 
 [Leave a comment!](https://github.com/nexus-stone-solutions/Nexpense/discussions/1)
