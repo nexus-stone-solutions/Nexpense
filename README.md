@@ -11,7 +11,7 @@ FREE Expense Tracker
 1. Click the green '< > Code' button above
 2. Select 'Download ZIP'
 3. Unzip the file on your computer
-4. Ensure you have node.js, npm, and electron installed (
+4. Ensure you have node.js, npm, and electron installed
 5. Run the following command-line commands in the unzipped folder:
    - `npm install`
    - `npm start`
