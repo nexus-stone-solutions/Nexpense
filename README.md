@@ -11,10 +11,11 @@ FREE Expense Tracker
 1. Click the green '< > Code' button above
 2. Select 'Download ZIP'
 3. Unzip the file on your computer
-4. Double-click
+4. Ensure you have node.js, npm, and electron installed (
 5. Run the following command-line commands in the unzipped folder:
+   - `npm install`
    - `npm start`
-   - `npm run electron`
+   - In a separate terminal tab: `npm run electron`
 
 ### Discussions: 
 [Leave a comment!](https://github.com/nexus-stone-solutions/Nexpense/discussions/1)
