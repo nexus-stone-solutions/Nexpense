@@ -38,25 +38,6 @@ jobs:
         run: |
           #!/bin/bash
           ## Ensure git credentials are set beforehand
-          # Check for go installation
-          if command -v go &> /dev/null; then
-            echo "[+] Go is installed."
-          else
-            echo "Go is not installed."
-            echo "Please follow the official installation instructions for your operating system:"
-            echo "- https://go.dev/doc/install"
-            exit 1
-          fi
-          
-          # Install gitleaks
-          if ! command -v gitleaks &> /dev/null; then
-              apt install gitleaks || {
-                  echo "[-] Failed to install gitleaks."
-                  exit 1
-              }
-              echo "[+] Gitleaks installed."
-          fi
-                    
           # Run gitleaks
           echo "[+] Running gitleaks..."
           cd ${{ github.workspace }}
@@ -68,7 +49,7 @@ jobs:
           
           echo "[+] Secrets scan saved to gitleaks-report.txt"
       - name: Upload report artifact to GitHub
-      - uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v4
         with:
           name: gitleaks-report
           path: ${{ github.workspace }}/gitleaks-report.txt
