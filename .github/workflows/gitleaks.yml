@@ -48,6 +48,10 @@ jobs:
           echo "[+] Gitleaks scan complete"
           
           echo "[+] Secrets scan saved to gitleaks-report.txt"
+          if [ ! -s gitleaks-report.txt ]; then
+            echo "[+] No secrets found." >> gitleaks-report.txt
+          fi
+
       - name: Upload report artifact to GitHub
         uses: actions/upload-artifact@v4
         with:
